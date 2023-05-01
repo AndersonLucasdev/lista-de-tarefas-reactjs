@@ -5,22 +5,22 @@ function App() {
   const [Atividades, setAtividades] = useState([]);
   const [novaAtividade, setnovaAtividade] = useState('');
 
-  const handleInputChange = (e) => {
+  const valorInput = (e) => {
     setnovaAtividade(e.target.value);
   };
 
-  const handleAddTask = () => {
+  const adicionarAtividade = () => {
     setAtividades([...Atividades, novaAtividade]);
     setnovaAtividade('');
   };
 
-  const handleDeleteTask = (indice) => {
+  const delAtividade = (indice) => {
     const novaAtividades = [...Atividades];
     novaAtividades.splice(indice, 1);
     setAtividades(novaAtividades);
   };
 
-  const handleEditTask = (indice, novoValor) => {
+  const editarAtividade = (indice, novoValor) => {
     const novaAtividades = [...Atividades];
     novaAtividades[indice] = novoValor;
     setAtividades(novaAtividades);
@@ -35,7 +35,7 @@ function App() {
     };
 
     const handleSaveClick = () => {
-      handleEditTask(indice, novoValor);
+      editarAtividade(indice, novoValor);
       setEditando(false);
     };
 
@@ -49,10 +49,14 @@ function App() {
     }
 
     return (
-      <li>
-        {task}
-        <button onClick={() => setEditando(true)}>Editar</button>
-        <button onClick={() => handleDeleteTask(indice)}>Excluir</button>
+      <li className='container_list_lista'>
+        <p className='container_list_lista_tarefa'>
+          {task}
+        </p>
+        <div className='container_list_lista_bttn'>
+          <button onClick={() => setEditando(true)}>Editar</button>
+          <button onClick={() => delAtividade(indice)}>Excluir</button>
+        </div>
       </li>
     );
   };
@@ -64,8 +68,8 @@ function App() {
           <h1>Task List</h1>
         </div>
         <div className='container_form'>
-          <input type="text" value={novaAtividade} onChange={handleInputChange} placeholder='O que deseja fazer hoje? ' />
-          <button onClick={handleAddTask}>Adicionar</button>
+          <input type="text" value={novaAtividade} onChange={valorInput} placeholder='O que deseja fazer hoje? ' />
+          <button onClick={adicionarAtividade}>Adicionar</button>
         </div>
         <ul className='container_list'>
           {Atividades.map((task, indice) => (
