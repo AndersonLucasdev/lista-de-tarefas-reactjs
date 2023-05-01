@@ -23,7 +23,7 @@ main {
     flex-direction: column;
 }
 
-.container_titulo {
+ .container_titulo {
     height: 10%;
     width: 100%;
     display: flex;
@@ -34,6 +34,7 @@ main {
 .container_titulo > h1 {
     color: #fff;
 }
+
 .container_form {
     height: 15%;
     width: 100%;
@@ -55,8 +56,11 @@ main {
     height: 75%;
     width: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
     flex-direction: column;
+} 
+
+.container_list > ul {
+    
 }
 
