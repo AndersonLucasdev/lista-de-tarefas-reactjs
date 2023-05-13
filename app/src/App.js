@@ -1,66 +1,70 @@
 import './App.css'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { api } from './Services/api';
+
+
 
 function App() {
-  console.log("oii")
-  const [Atividades, setAtividades] = useState([]);
+  const [Carregando, setCarregando] = useState()
+  const [Atividades, setAtividades] = useState();
   const [novaAtividade, setnovaAtividade] = useState('');
+
+  const pegarAtividade = async () => {
+    try {
+        const res = await api.get("/")
+        setAtividades (res.data)
+        console.log(res.data)
+        setCarregando(true)
+    }
+    catch (erro){
+      console.log(erro)
+    }
+  }
+
+  useEffect(() => {
+    pegarAtividade()
+  })
 
   const valorInput = (e) => {
     setnovaAtividade(e.target.value);
   };
 
-  const adicionarAtividade = () => {
-    setAtividades([...Atividades, novaAtividade]);
-    setnovaAtividade('');
-  };
 
-  const delAtividade = (indice) => {
-    const novaAtividades = [...Atividades];
-    novaAtividades.splice(indice, 1);
-    setAtividades(novaAtividades);
-  };
 
-  const editarAtividade = (indice, novoValor) => {
-    const novaAtividades = [...Atividades];
-    novaAtividades[indice] = novoValor;
-    setAtividades(novaAtividades);
-  };
+  // const Task = ({ task, indice }) => {
+  //   const [Editando, setEditando] = useState(false);
+  //   const [novoValor, setnovoValor] = useState(task);
 
-  const Task = ({ task, indice }) => {
-    const [Editando, setEditando] = useState(false);
-    const [novoValor, setnovoValor] = useState(task);
+  //   const handleEditInputChange = (e) => {
+  //     setnovoValor(e.target.value);
+  //   };
 
-    const handleEditInputChange = (e) => {
-      setnovoValor(e.target.value);
-    };
+  //   const handleSaveClick = () => {
+  //     editarAtividade(indice, novoValor);
+  //     setEditando(false);
+  //   };
 
-    const handleSaveClick = () => {
-      editarAtividade(indice, novoValor);
-      setEditando(false);
-    };
+  //   if (Editando) {
+  //     return (
+  //       <li>
+  //         <input type="text" value={novoValor} onChange={handleEditInputChange} />
+  //         <button onClick={handleSaveClick}>Salvar</button>
+  //       </li>
+  //     );
+  //   }
 
-    if (Editando) {
-      return (
-        <li>
-          <input type="text" value={novoValor} onChange={handleEditInputChange} />
-          <button onClick={handleSaveClick}>Salvar</button>
-        </li>
-      );
-    }
-
-    return (
-      <li className='container_list_lista'>
-        <p className='container_list_lista_tarefa'>
-          {task}
-        </p>
-        <div className='container_list_lista_bttn'>
-          <button onClick={() => setEditando(true)}>Editar</button>
-          <button onClick={() => delAtividade(indice)}>Excluir</button>
-        </div>
-      </li>
-    );
-  };
+  //   return (
+  //     <li className='container_list_lista'>
+  //       <p className='container_list_lista_tarefa'>
+  //         {task}
+  //       </p>
+  //       <div className='container_list_lista_bttn'>
+  //         <button onClick={() => setEditando(true)}>Editar</button>
+  //         <button onClick={() => delAtividade(indice)}>Excluir</button>
+  //       </div>
+  //     </li>
+  //   );
+  // };
 
   return (
     <main >
@@ -70,13 +74,21 @@ function App() {
         </div>
         <div className='container_form'>
           <input type="text" value={novaAtividade} onChange={valorInput} placeholder='O que deseja fazer hoje? ' />
-          <button onClick={adicionarAtividade}>Adicionar</button>
+          <button>Adicionar</button>
         </div>
-        <ul className='container_list'>
-          {Atividades.map((task, indice) => (
-            <Task task={task} indice={indice} key={indice} />
-          ))}
-        </ul>
+        {Carregando? (
+          <>
+          {/* <ul className='container_list'>
+            {Atividades.map((item, index) => (
+              <div className="container_list_atividades" key={index}>
+                <p>{item.descricao}</p>
+              </div>
+            ))}
+          </ul>  */}
+          </>
+        ):(
+          <h1>Carregando...</h1>
+        )}
       </div>
     </main>
   );
