@@ -5,17 +5,16 @@ import { api } from './Services/api';
 
 
 function App() {
-  const [Carregando, setCarregando] = useState()
+  const [Carregando, setCarregando] = useState(false)
   const [Atividades, setAtividades] = useState();
   const [novaAtividade, setnovaAtividade] = useState('');
 
   const pegarAtividade = async () => {
     try {
         const res = await api.get("/")
-        setAtividades (res.data)
-        console.log(res)
-        console.log(res.data)
+        setAtividades(res.data)
         setCarregando(true)
+        console.log(res.data)
     }
     catch (erro){
       console.log(erro)
@@ -73,23 +72,21 @@ function App() {
         <div className='container_titulo'>
           <h1>Task List</h1>
         </div>
-        <div className='container_form'>
+        {/* <div className='container_form'>
           <input type="text" value={novaAtividade} onChange={valorInput} placeholder='O que deseja fazer hoje? ' />
           <button>Adicionar</button>
         </div>
-        {Carregando? (
-          <>
-          {/* <ul className='container_list'>
+        {Carregando === true ? (
+          <ul className='container_list'>
             {Atividades.map((item, index) => (
-              <div className="container_list_atividades" key={index}>
-                <p>{item.descricao}</p>
-              </div>
+              <li key={index}>{item}</li>
             ))}
-          </ul>  */}
-          </>
-        ):(
-          <h1>Carregando...</h1>
-        )}
+          </ul>
+        ) : (
+          <h1>Carregando</h1>
+        )} */}
+      
+          <h1>{}</h1>
       </div>
     </main>
   );
