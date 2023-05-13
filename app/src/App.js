@@ -2,6 +2,7 @@ import './App.css'
 import React, { useState } from 'react';
 
 function App() {
+  console.log("oii")
   const [Atividades, setAtividades] = useState([]);
   const [novaAtividade, setnovaAtividade] = useState('');
 
