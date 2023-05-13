@@ -13,6 +13,7 @@ function App() {
     try {
         const res = await api.get("/")
         setAtividades (res.data)
+        console.log(res)
         console.log(res.data)
         setCarregando(true)
     }
