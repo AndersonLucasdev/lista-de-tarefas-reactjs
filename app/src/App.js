@@ -11,10 +11,11 @@ function App() {
 
   const pegarAtividade = async () => {
     try {
-        const res = await api.get("/list/")
+        const res = await api.get("/")
         setAtividades(res.data)
         setCarregando(true)
         console.log(res.data)
+        
     }
     catch (erro){
       console.log(erro)
@@ -72,21 +73,11 @@ function App() {
         <div className='container_titulo'>
           <h1>Task List</h1>
         </div>
-        {/* <div className='container_form'>
+        <div className='container_form'>
           <input type="text" value={novaAtividade} onChange={valorInput} placeholder='O que deseja fazer hoje? ' />
           <button>Adicionar</button>
         </div>
-        {Carregando === true ? (
-          <ul className='container_list'>
-            {Atividades.map((item, index) => (
-              <li key={index}>{item}</li>
-            ))}
-          </ul>
-        ) : (
-          <h1>Carregando</h1>
-        )} */}
-      
-          <h1>{}</h1>
+          
       </div>
     </main>
   );
