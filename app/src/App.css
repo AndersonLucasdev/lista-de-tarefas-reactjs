@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
 
+.mudarEstilo {
+    text-decoration: line-through;
+    font-size: 1rem;
+}
+
 * {
     padding: 0;
     border: 0;
@@ -58,7 +63,9 @@ main {
 }
 .container-form > button {
     height: 50%;
-    width: 12%;
+    width: 17%;
+    cursor: pointer;
+    background-color: #c4c4cc;
 }
 
 .container-listaTarefas {
@@ -126,13 +133,26 @@ main {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    background-color: #c4c4cc;
+}
+
+.container-mostrarTarefas-list-bttn > svg {
+    cursor: pointer;
 }
 
 .container-mostrarTarefas-list-bttn > button {
     margin: 0px 2px;
+    cursor: pointer;
 }
 
-
+.container-mostrarTarefas-Editando {
+    margin: 0px 50px;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+}
 
 
 

@@ -1,7 +1,7 @@
 import './App.css'
 import React, { useEffect, useState } from 'react';
 import { api } from './Services/api';
-
+import {FaRegTrashAlt} from "react-icons/fa"
 
 
 function App() {
@@ -10,7 +10,6 @@ function App() {
   const [novaAtividade, setnovaAtividade] = useState('');
   const [novoValor, setnovoValor] = useState();
   const [Editando, setEditando] = useState(false);
-
 
   const valorInput = (e) => {
     setnovaAtividade(e.target.value);
@@ -75,28 +74,31 @@ function App() {
   };
 
   //  const editarAtividade = async (_id, novoValor) => {
-  //   setEditando(true)
   //   try {
-      
+  //     setEditando(true)
+  //     console.log(Editando)
   //     const res = await api.patch("/"+_id, novoValor);
   //     console.log(res)
+      
   // }
   //   catch (erro){
   //     console.log(erro)
   //   }
   // }
     
-  //   const handleEditInputChange = (e) => {
-  //     setnovoValor(e.target.value);
-  //   };
+  //   const Update = (_id) => {
+  //     return (
+  //       <li>
+  //         <input onChange={valorInput} value={novaAtividade} type="text"/>
+  //         <button onClick={() => editarAtividade(_id, valorInput)}>Salvar</button>
+  //       </li>
+  //     );
 
-  //   const handleSaveClick = () => {
-  //     editarAtividade(novoValor);
-  //     setEditando(false);
-  //   };
+  //   }
+  
   
     
-
+  
   useEffect(() => {
     pegarAtividade()
   },
@@ -119,32 +121,26 @@ function App() {
         <div className='container-mostrarTarefas'>
 
         {Carregando === true?(
-
           Atividades?.map((item, index) => (
           <div className='container-mostrarTarefas-list' key={index}>
             <div key={index} className="container-mostrarTarefas-list-atividades">
                 <p>{item.descricao}</p>
             </div>
             <div className='container-mostrarTarefas-list-bttn'>
-              <button onClick={() => delAtividade(item._id)}>Excluir</button>
-              <button>Editar</button> 
-                {Editando===true&&
-                <li>
-                  <input type="text"/>
-                  <button >Salvar</button>
-                </li>
-              }
+              <FaRegTrashAlt onClick={() => delAtividade(item._id)}/>
             </div>
           </div>
           ))
-
+            
         ):(
           <h1>Carregando</h1>
         )}
 
         </div>
-      </div>
+      </div>  
     </main>
+
+    
   );
 }
 
