@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
 * {
     padding: 0;
     border: 0;
@@ -10,21 +12,23 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: aqua;
+    background-color: #c4c4cc;
+    font-family: 'inter';
 }
 
 .container {
-    width: 37%;
-    height: 65%;
-    background-color: rgb(233, 233, 26);
+    width: 35%;
+    height: 70%;
+    background-color: #9400D3;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    border-radius: 3%;
 }
 
  .container-titulo {
-    height: 10%;
+    height: 15%;
     width: 100%;
     display: flex;
     align-items: center;
@@ -33,6 +37,8 @@ main {
 
 .container-titulo > h1 {
     color: #fff;
+    font-size: 2.5rem;
+    margin: 10px 10px 0 0;
 }
 
 .container-form {
@@ -45,19 +51,86 @@ main {
 
 .container-form > input {
     height: 50%;
+    padding: 0% 3%;
     width: 60%;
+    border: none;
+    outline: none;
 }
 .container-form > button {
     height: 50%;
     width: 12%;
 }
 
-.container-list {
+.container-listaTarefas {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: start;
+    justify-content: start;
+    height: 10%;
+    width: 100%;
 }
 
+.container-listaTarefas > h2 {
+    font-size: 1.5rem;
+    margin: 0 20px;
+}
+
+.container-mostrarTarefas {
+    height: 60%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    margin-bottom: 6px;
+}
+
+.container-mostrarTarefas::-webkit-scrollbar {
+    width: 10px;               /* width of the entire scrollbar */
+    
+}
+
+.container-mostrarTarefas::-webkit-scrollbar-thumb {
+    background-color: hsl(102, 5%, 50%);    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+}
+
+
+
+.container-mostrarTarefas-list {
+    width: 80%;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #c4c4cc;
+    border-radius: 2px;
+    margin-top: 8px;
+}
+
+.container-mostrarTarefas-list-atividades {
+    width: 75%;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.container-mostrarTarefas-list-atividades > p {
+    font-size: 1rem;
+}
+
+.container-mostrarTarefas-list-bttn {
+    width: 20%;
+    height: 15%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.container-mostrarTarefas-list-bttn > button {
+    margin: 0px 2px;
+}
 
 
 

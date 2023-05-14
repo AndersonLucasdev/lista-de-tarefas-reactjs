@@ -74,18 +74,27 @@ function App() {
 
   };
 
-   const editarAtividade = (_id) => {
-    setEditando(true)
+  //  const editarAtividade = async (_id, novoValor) => {
+  //   setEditando(true)
+  //   try {
+      
+  //     const res = await api.patch("/"+_id, novoValor);
+  //     console.log(res)
+  // }
+  //   catch (erro){
+  //     console.log(erro)
+  //   }
+  // }
+    
+  //   const handleEditInputChange = (e) => {
+  //     setnovoValor(e.target.value);
+  //   };
 
-    const handleEditInputChange = (e) => {
-      setnovoValor(e.target.value);
-    };
-
-    const handleSaveClick = () => {
-      editarAtividade(novoValor);
-      setEditando(false);
-    };
-  }
+  //   const handleSaveClick = () => {
+  //     editarAtividade(novoValor);
+  //     setEditando(false);
+  //   };
+  
     
 
   useEffect(() => {
@@ -104,28 +113,36 @@ function App() {
           <input type="text" value={novaAtividade} onChange={valorInput} placeholder='O que deseja fazer hoje? ' />
           <button onClick={adicionarAtividade}>Adicionar</button>
         </div>
-        <>
-          {
+        <div className='container-listaTarefas'>
+          <h2>Lista de tarefas</h2>
+        </div>
+        <div className='container-mostrarTarefas'>
+
+        {Carregando === true?(
+
           Atividades?.map((item, index) => (
-            <div className='container-list' key={index}>
-              <div className="container-list-atividades">
-                  <h3>{item.descricao}</h3>
-              </div>
-              <div className='container-list-bttn'>
-                <button onClick={() => delAtividade(item._id)}>Excluir</button>
-                <button onClick={() => {editarAtividade(item._id);}}>Editar</button>
-                {Editando&&(
-                  return (
-                    <li>
-                      <input type="text" value={novoValor} onChange={handleEditInputChange} />
-                      <button onClick={handleSaveClick}>Salvar</button>
-                    </li>
-                )}
-              </div>
+          <div className='container-mostrarTarefas-list' key={index}>
+            <div key={index} className="container-mostrarTarefas-list-atividades">
+                <p>{item.descricao}</p>
             </div>
+            <div className='container-mostrarTarefas-list-bttn'>
+              <button onClick={() => delAtividade(item._id)}>Excluir</button>
+              <button>Editar</button> 
+                {Editando===true&&
+                <li>
+                  <input type="text"/>
+                  <button >Salvar</button>
+                </li>
+              }
+            </div>
+          </div>
           ))
-          }
-        </>
+
+        ):(
+          <h1>Carregando</h1>
+        )}
+
+        </div>
       </div>
     </main>
   );
