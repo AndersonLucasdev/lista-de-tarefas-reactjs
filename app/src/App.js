@@ -8,6 +8,9 @@ function App() {
   const [Carregando, setCarregando] = useState(false)
   const [Atividades, setAtividades] = useState();
   const [novaAtividade, setnovaAtividade] = useState('');
+  const [novoValor, setnovoValor] = useState();
+  const [Editando, setEditando] = useState(false);
+
 
   const valorInput = (e) => {
     setnovaAtividade(e.target.value);
@@ -61,10 +64,8 @@ function App() {
   const delAtividade = async (_id) => {
     try {
       console.log(_id)
-      const data = {
-        _id: _id
-      };
-      const res = await api.patch("/", data);
+      
+      const res = await api.delete("/"+_id);
       console.log(res)
   }
     catch (erro){
@@ -73,10 +74,25 @@ function App() {
 
   };
 
+   const editarAtividade = (_id) => {
+    setEditando(true)
+
+    const handleEditInputChange = (e) => {
+      setnovoValor(e.target.value);
+    };
+
+    const handleSaveClick = () => {
+      editarAtividade(novoValor);
+      setEditando(false);
+    };
+  }
+    
+
   useEffect(() => {
     pegarAtividade()
   },
   [])
+
 
   return (
     <main >
@@ -97,7 +113,14 @@ function App() {
               </div>
               <div className='container-list-bttn'>
                 <button onClick={() => delAtividade(item._id)}>Excluir</button>
-                {/* <button onClick={() => setEditando(true)}>Editar</button> */}
+                <button onClick={() => {editarAtividade(item._id);}}>Editar</button>
+                {Editando&&(
+                  return (
+                    <li>
+                      <input type="text" value={novoValor} onChange={handleEditInputChange} />
+                      <button onClick={handleSaveClick}>Salvar</button>
+                    </li>
+                )}
               </div>
             </div>
           ))
@@ -109,7 +132,5 @@ function App() {
 }
 
 export default App;
-
-
 
 
