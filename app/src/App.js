@@ -11,7 +11,7 @@ function App() {
 
   const pegarAtividade = async () => {
     try {
-        const res = await api.get("/")
+        const res = await api.get("/list/")
         setAtividades(res.data)
         setCarregando(true)
         console.log(res.data)
