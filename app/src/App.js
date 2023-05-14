@@ -9,6 +9,10 @@ function App() {
   const [Atividades, setAtividades] = useState();
   const [novaAtividade, setnovaAtividade] = useState('');
 
+  const valorInput = (e) => {
+    setnovaAtividade(e.target.value);
+  };
+
   const pegarAtividade = async () => {
     try {
         const res = await api.get("/")
@@ -22,62 +26,83 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    pegarAtividade()
-  })
+  // const pegarAtividadeId = async (_id) => {
+  //   try{
+  //     const id = item._id
+  //     const data = {
+  //       _id: id
+  //     }
+  //     console.log(id)
+  //     const res = await api.get("/", data)
+  //     }
 
-  const valorInput = (e) => {
-    setnovaAtividade(e.target.value);
+  //   catch (erro){
+  //     console.log(erro)
+  //   }
+  // }
+
+  const adicionarAtividade = async (_id) => {
+    try {
+      const data = {
+        descricao: novaAtividade
+      };
+      const res = await api.post("/", data);
+      console.log(res)
+      setnovaAtividade('');
+
+  }
+    catch (erro){
+      console.log(erro)
+    }
+    
+    setnovaAtividade('');
   };
 
+  const delAtividade = async (_id) => {
+    try {
+      console.log(_id)
+      const data = {
+        _id: _id
+      };
+      const res = await api.patch("/", data);
+      console.log(res)
+  }
+    catch (erro){
+      console.log(erro)
+    }
 
+  };
 
-  // const Task = ({ task, indice }) => {
-  //   const [Editando, setEditando] = useState(false);
-  //   const [novoValor, setnovoValor] = useState(task);
-
-  //   const handleEditInputChange = (e) => {
-  //     setnovoValor(e.target.value);
-  //   };
-
-  //   const handleSaveClick = () => {
-  //     editarAtividade(indice, novoValor);
-  //     setEditando(false);
-  //   };
-
-  //   if (Editando) {
-  //     return (
-  //       <li>
-  //         <input type="text" value={novoValor} onChange={handleEditInputChange} />
-  //         <button onClick={handleSaveClick}>Salvar</button>
-  //       </li>
-  //     );
-  //   }
-
-  //   return (
-  //     <li className='container_list_lista'>
-  //       <p className='container_list_lista_tarefa'>
-  //         {task}
-  //       </p>
-  //       <div className='container_list_lista_bttn'>
-  //         <button onClick={() => setEditando(true)}>Editar</button>
-  //         <button onClick={() => delAtividade(indice)}>Excluir</button>
-  //       </div>
-  //     </li>
-  //   );
-  // };
+  useEffect(() => {
+    pegarAtividade()
+  },
+  [])
 
   return (
     <main >
       <div className='container'>
-        <div className='container_titulo'>
+        <div className='container-titulo'>
           <h1>Task List</h1>
         </div>
-        <div className='container_form'>
+        <div className='container-form'>
           <input type="text" value={novaAtividade} onChange={valorInput} placeholder='O que deseja fazer hoje? ' />
-          <button>Adicionar</button>
+          <button onClick={adicionarAtividade}>Adicionar</button>
         </div>
-          
+        <>
+          {
+          Atividades?.map((item, index) => (
+            <div className='container-list' key={index}>
+              <div className="container-list-atividades">
+                  <h3>{item.descricao}</h3>
+              </div>
+              <div className='container-list-bttn'>
+                <button onClick={() => delAtividade(item._id)}>Excluir</button>
+                {/* <button onClick={() => setEditando(true)}>Editar</button> */}
+              </div>
+            </div>
+          ))
+          }
+        </>
       </div>
     </main>
   );

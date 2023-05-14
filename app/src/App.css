@@ -23,7 +23,7 @@ main {
     flex-direction: column;
 }
 
- .container_titulo {
+ .container-titulo {
     height: 10%;
     width: 100%;
     display: flex;
@@ -31,11 +31,11 @@ main {
     justify-content: center;
 }
 
-.container_titulo > h1 {
+.container-titulo > h1 {
     color: #fff;
 }
 
-.container_form {
+.container-form {
     height: 15%;
     width: 100%;
     display: flex;
@@ -43,53 +43,22 @@ main {
     justify-content: center;
 }
 
-.container_form > input {
+.container-form > input {
     height: 50%;
     width: 60%;
 }
-.container_form > button {
+.container-form > button {
     height: 50%;
     width: 12%;
 }
 
-.container_list {
-    height: 75%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
-} 
-
-.container_list_lista {
-    width: 80%;
-    height: 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: blue;
-    margin-top: 2%;
-}
-
-.container_list_lista_tarefa {
-    width: 50%;
-    height: 100%;
+.container-list {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.container_list_lista_bttn {
-    width: 40%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
 
-.container_list_lista_bttn > button {
-    margin-right: 4%;
-}
 
 
 
