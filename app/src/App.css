@@ -17,14 +17,14 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #c4c4cc;
+    background-image: linear-gradient(to right, #708090, #778899);
     font-family: 'inter';
 }
 
 .container {
     width: 35%;
     height: 70%;
-    background-color: #9400D3;
+    background-color: #2F4F4F;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,6 +79,7 @@ main {
 .container-listaTarefas > h2 {
     font-size: 1.5rem;
     margin: 0 20px;
+    color: #fff;
 }
 
 .container-mostrarTarefas {
@@ -155,5 +156,47 @@ main {
 }
 
 
+@media screen and (max-width: 1280px) {
+    .container {
+        width: 50%;
+    }
 
+    .container-listaTarefas > h2 {
+        font-size: 2rem;
+    }
+
+    .container-mostrarTarefas-list-atividades > p {
+        font-size: 1.25rem;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .container {
+        width: 60%;
+    }
+
+    .container-listaTarefas > h2 {
+        font-size: 2rem;
+    }
+
+    .container-mostrarTarefas-list-atividades > p {
+        font-size: 1.25rem;
+    }
+}
+
+@media screen and (max-width: 568px){
+    .container {
+        width: 75%;
+        height: 65%;
+    }
+
+    .container-listaTarefas > h2 {
+        font-size: 1.75rem;
+    }
+
+    .container-mostrarTarefas-list-atividades > p {
+        font-size: 1.25rem;
+    }
+
+}
 
