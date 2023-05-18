@@ -102,7 +102,7 @@ function App() {
   useEffect(() => {
     pegarAtividade()
   },
-  [])
+  [adicionarAtividade, delAtividade])
 
 
   return (
