@@ -155,19 +155,20 @@ main {
     width: 20%;
 }
 
-
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 568px){
     .container {
-        width: 50%;
+        width: 75%;
+        height: 65%;
     }
 
     .container-listaTarefas > h2 {
-        font-size: 2rem;
+        font-size: 1.75rem;
     }
 
     .container-mostrarTarefas-list-atividades > p {
         font-size: 1.25rem;
     }
+
 }
 
 @media screen and (max-width: 992px) {
@@ -184,19 +185,22 @@ main {
     }
 }
 
-@media screen and (max-width: 568px){
+
+@media screen and (max-width: 1280px) {
     .container {
-        width: 75%;
-        height: 65%;
+        width: 50%;
     }
 
     .container-listaTarefas > h2 {
-        font-size: 1.75rem;
+        font-size: 2rem;
     }
 
     .container-mostrarTarefas-list-atividades > p {
         font-size: 1.25rem;
     }
-
 }
+
+
+
+
 
